@@ -1,0 +1,16 @@
+name: Deploy UPM Basic
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy-basic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Push UPM Subtree
+        run: |
+          git subtree push --prefix Assets/ReTween origin upm

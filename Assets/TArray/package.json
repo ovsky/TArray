@@ -1,0 +1,14 @@
+{
+    "name": "com.ovsky.retween",
+    "displayName": "ReTween",
+    "version": "0.0.1",
+    "unity": "2022.2",
+    "description": "The most powerful and easy to use tweening library for Unity.",
+    "documentationUrl": "https://github.com/ovsky/ReTween",
+    "author": 
+    {
+        "name": "Przemysław Orłowski / ovsky",
+        "email": "hello@orlowski.work",
+        "url": "https://www.orlowski.work/"
+    }
+}

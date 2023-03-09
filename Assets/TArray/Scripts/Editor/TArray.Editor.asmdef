@@ -1,0 +1,18 @@
+{
+    "name": "TArray.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:79a7faa1c5cfb45eda24319fef9286a4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
+#pragma warning disable CS0693 
 
 namespace Extensions
 {
@@ -128,12 +128,60 @@ namespace Extensions
             return this;
         }
 
+        public T Get(int x, int y)
+            => data[(size.x * y) + x];
+
+        public TArray<T> Set(int x, int y, T value)
+        {
+            data[(size.x * y) + x] = value;
+            return this;
+        }
+
+        public TArray<T> Set(int x, int y, T value, bool resize)
+        {
+            if (resize)
+            {
+                Resize(Mathf.Max(x + 1, size.x), Mathf.Max(y + 1, size.y));
+            }
+
+            data[(size.x * y) + x] = value;
+            return this;
+        }
+
+        public TArray<T> AddSize(int x, int y)
+            => Resize(size.x + x, size.y + y);
+
+        public TArray<T> AddRow(T[] x = null, T[] y = null)
+        {
+            Resize(size.x + (x == null ? 0 : 1), size.y + (y == null ? 0 : 1));
+
+            T[][] rows = new T[2][] { x, y };
+            int[] sizes = new int[2] { size.x, size.y };
+
+            for (int a = 0; a < rows.Length; a++)
+            {
+                if (rows[a]?.Length > 0)
+                {
+                    for (int i = 0; i < rows[a].Length; i++)
+                    {
+                        data[(sizes[a] * i) + (sizes[a] - 1)] = rows[a][i];
+                    }
+                }
+            }
+            return this;
+        }
+
         #endregion Methods
 
         #region Overrides
 
         public bool Equals(TArray<T> other)
         {
+            if (size != other.size)
+            {
+                return false;
+            }
+
             for (int i = 0; i < data.Length; i++)
             {
                 if (!data[i].Equals(other.data[i]))
@@ -141,6 +189,7 @@ namespace Extensions
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -149,3 +198,5 @@ namespace Extensions
 
     #endregion TArray
 }
+
+#pragma warning restore CS0693

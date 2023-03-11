@@ -1,10 +1,10 @@
 {
-    "name": "com.ovsky.retween",
-    "displayName": "ReTween",
-    "version": "0.0.1",
+    "name": "com.ovsky.tarray",
+    "displayName": "TArray",
+    "version": "1.0.0",
     "unity": "2022.2",
-    "description": "The most powerful and easy to use tweening library for Unity.",
-    "documentationUrl": "https://github.com/ovsky/ReTween",
+    "description": "The most powerful and easy to use Serialized Multidimensional TArray for Unity.",
+    "documentationUrl": "https://github.com/ovsky/TArray",
     "author": 
     {
         "name": "Przemysław Orłowski / ovsky",

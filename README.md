@@ -2,7 +2,7 @@
 
 ![TArray Logo](https://i.ibb.co/N7bpHv6/xxrect356.png)
 
-#### **TArray** is incredibly fast, universal and serializable array solution dor C# and Unity.
+#### **TArray** is incredibly fast, universal and serializable array solution for C# and Unity.
 
 The main adventage of **TArray** in comparison to others is that this solution combines unbelievably simple and low amout of code [totally 180 lines] with nearly every expected feature, beacuse of fullness of well-written approaches.
 

@@ -2,7 +2,7 @@
     "name": "TArray.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:79a7faa1c5cfb45eda24319fef9286a4"
+        "TArray.Runtime"
     ],
     "includePlatforms": [
         "Editor"

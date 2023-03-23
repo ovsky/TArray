@@ -1,139 +1,123 @@
-# 📦 ReTween - Fastest Unity and .NET Tweening Solution 
+# ⏺️ TArray - Ultimate Serializable Array [C# / Unity]
 
-![ReTween Logo](https://i.postimg.cc/150Fwqkd/ellipse1ss275.png)
+![TArray Logo](https://i.ibb.co/N7bpHv6/xxrect356.png)
 
-ReTween is blazing fast, modular and really simple Tweening System for Unity.
+#### **TArray** is incredibly fast, universal and serializable array solution for C# and Unity.
 
-This plugin is not ispired by market-leading DoTween, beacuse we think that the advanced and fast tweening can be done way better. 
+The main adventage of **TArray** in comparison to others is that this solution combines unbelievably simple and low amout of code [totally 180 lines] with nearly every expected feature, beacuse of fullness of well-written approaches.
 
-Beacuse of that, the structure of writing Tweens is quite different than in DoTween - way more clear and elegant. But we do not rule out that in the future we will run an overlay that allows you to use ReTween, like DoTween - for people which are used to using DoTween.
+Another is that the **TArray** is not a class like many other extended arrays, but still a structure like classic array - so it is really fast and memory safe and friendly, and also support enumerations and LINQ expressions natively.
 
-[Benchmarks comparing ReTween and DoTween will be available shortly]
+
+## 📘 Installation
+
+### You can install it by:
+
+1. Using Unity Git packages support:
+```typescript
+Toolabar -> Window/Package Manager -> ＋ -> Add package from Git URL -> "https://github.com/ovsky/TArray.git#upm"
+```
+2. Unity Git URL suppport, by adding this entry in your packages *manifest.json*:
+```typescript
+"com.ovsky.tarray": "https://github.com/ovsky/TArray.git#upm"
+```
+3. Using Unity tarball support and *wget* [Linux] or *start* [Windows] download:
+
+```typescript
+Linux: "wget https://github.com/ovsky/TArray/tarball/upm -O ovsky.tarray-upm.tgz"
+Windows: "start https://github.com/ovsky/TArray/tarball/upm"
+```
+```typescript
+Use: Toolabar -> Window/Package Manager -> ＋ -> Add package from tarball -> Select: "ovsky.tarray-*.tgz"
+```
+
+
+The *upm* stands for Unity Package Manager - the default manager for Unity-ready external packages/extensions.
+
 
 ## 📖 QuickStart
 
-### ReTween:
+### Code:
+#### So, let's see the most important TArray features:
 
-So, let's tween a color and piosition of objects in two different ways:
-
-```csharp
-Tween.Color(someImage, Color.blue, 1f, 0.5f, Ease.InOut);
-Tween.Position(someTransform, Vector3.right);
-```
-
-Pretty easy, yeah?
-
-### 🗂️ ReExtensions:
-ReTween supports also extensions like: 
-`ReTween.Next()` in which you define the next action, after reffered. 
-`ReTween.SetEase()` where you can set easing mode, after creating a `Tween`.
-And more...
-
-### 📚 ReModules:
-
-You can create new ReModule by writing new script in ReTween/Modules that will use the Tween.Add() method, and create new `Action<float>`, where the `float` is easing time, from 0 to 1.
-
-If you want to use it like the rest of the ReTween *(by Tween.YourModule())*, you can make your new class a *partial* of the Tween.
-
-For example, we will add a Color Lerp module for UI.Image:
+Multiple declaration possibilities:
 
 ```csharp
-public static void Color(Image image, Color target)
-{
-    Tween.Add(new TweenAction((float time) => image.color = UnityEngine.Color.LerpUnclamped(image.color, target, time)));
-}
+TArray<int> integerArray = new TArray<int>(5, 5);  // Classic declaration
+TArray<int> integerArray = new int[5, 5];          // Array attributed declaration
+TArray<int> integerArray = new Array[5, 5];        // Classic array declaration
+TArray<int> integerArray = new (5, 5);             // Modern .NET declaration
 ```
-
-Obviously, you can create more complex Tweens. In standard TweenAction you can use more pre-implemented values, like: `duration`, `delay`, `easing`, and more.
+---
+Easy conversion support:
 
 ```csharp
-public static void Color(Image image, Color target, float duration = 1f, float delay = 0f, Ease ease = null)
-{
-    Tween.Add(new TweenAction((float time) => image.color = UnityEngine.Color.LerpUnclamped(image.color, target, time), duration, delay, ease));
-}
+TArray<int> integerArray = stringArray.Cast<int>();       // Convert string to int array
+TArray<string> stringArray = customArray.Cast<string>();  // Convert custom to string array
 ```
-
-
-### 📘 Ease / Easing:
-
-#### How easing works?
-
-Easings are some sort of simple curves, that helps to visualise and evaluate smooth and juicy, animations. You can use some of the predefined curves or create own.
-
-In simple words - it evaluates the 0.0-1.0 value that you privided, creating the new one, based on your Ease, abling you to easile make really nice visuals. 
-
-Easing Visualisation:
-![](https://i.ibb.co/tX2dMRV/1-0-Z40-Vvur-Cgo-GJb-Kjj-In-Dl-Ax.gif)
-##### @leonardodev
-
-#### Technical Background
-
-*Ease* is fully compatible and swapable with AnimationCurves - with which you may already be familiar - with no additional instructions. 
-In every field you have used AnimationCurve, you can use Ease as the replacement, without changing the implementation. 
-The most important difference is that Eases has many predefined, basic values, a bank of custom definition, and that they are completely garbage-free, and made with optimisation in-mind. 
-
-### ⏩ Supported high-performace Ease Calculations:
-
-**ReTween** provides implementation of 28 high-performance math patterns for easing types:
+---
+Different value `get`/`set` options:
 
 ```csharp
+int element = integerArray[2, 2];     // Get value using attributes
+int element = integerArray.Get(2,2);  // Get value using method
 
-  
-    Linear = 0,
-    QuadIn = 1,
-    QuadOut = 2,
-    QuadInOut = 3,
-    CubicIn = 4,
-    CubicOut = 5,
-    CubicInOut = 6,
-    QuartIn = 7,
-    QuartOut = 8,
-    QuartInOut = 9,
-    QuintIn = 10,
-    QuintOut = 11,
-    QuintInOut = 12,
-    BounceIn = 13,
-    BounceOut = 14,
-    BounceInOut = 15,
-    ElasticIn = 16,
-    ElasticOut = 17,
-    ElasticInOut = 18,
-    CircularIn = 19,
-    CircularOut = 20,
-    CircularInOut = 21,
-    SinusIn = 22,
-    SinusOut = 23,
-    SinusInOut = 24,
-    ExponentialIn = 25,
-    ExponentialOut = 26,
-    ExponentialInOut = 27
-  
+integerArray[2, 2] = 1;               // Set value using attributes
+integerArray.Set(2,2, 1);             // Set value using method
+```
+---
+All LINQ operations support:
+
+```csharp
+TArray<Pets> petsArray = petsArray.Array.OrderBy(pet => pet.Age).ToArray();    // Sort class array by class property value
+TArray<Pets> dogsArray = petsArray.Array.Select(pet => pet is Dog).ToArray();  // Select Dogs from Pets array
+TArray<int> integerArray = integerArray.Array.OrderBy(i => i).ToArray();       // Sort int array values
+```
+---
+Type-free array operations:
+
+```csharp
+ITArray valueArray;
+valueArray = new TArray<int>(5, 5);                   // Declare int array at the field
+valueArray = valueArray.Cast<string>();               // Cast the array to string values and apply to undefined field
+valueArray = new TArray<bool>(5, 5).Set(0,0, true);   // Then change it to bool array with (0, 0) set to true
+TArray<bool> boolArray = valueArray;                  // Apply the undefined value array to array with defined type
+
+
 ```
 
+And more!
 
-## 📗 API Reference
 
-#### The structure of basic *TweenAction*:
+## 🗂️ Editor
 
-| TweenAction | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `start` | `float` | TweenAction start time. *[auto assigned][read-only]* |
-| `action` | `Action<float>` | Main action, that receives the float value as lerp time. |
-| `delay` | `float` | Time to start invoking TweenAction |
-| `duration` | `float` | Duration of tweening process. |
-| `ease` | `Ease` | Selected Ease, to make tweening more pretty.  |
+**TArray Editor** (Property Drawer actually) - is an extendable, flexible, and the most important: it supports all serializable types (existing and user-defined) out of the box, without creating the new Unity Inspector or Editor!
 
+
+#### Integer Preview:
+
+![TArray Integer Preview](https://i.ibb.co/QfVG8Sy/aint.png)
+
+#### GameObject Preview:
+
+![TArray GameObject Preview](https://i.ibb.co/mTC6JCs/ago.png)
+
+#### Boolean Preview:
+
+![TArray Boolean Preview](https://i.ibb.co/YjT1J3B/abool.png)
 
 ## 📝 License:
 
-Copyright (c) 2023 - Przemysław Orłowski
+```
+Copyright (C) 2023 - Przemysław Orłowski
+```
 
-License: 
+```
+"THE SOFTWARE IS PROVIDED 'AS IT IS' (...)"
+also known as:
 
-"THE SOFTWARE IS PROVIDED 'AS IS' (...)" also known as:
+**The MIT License**: 
+https://choosealicense.com/licenses/mit/
+```
 
-**MIT License**: https://choosealicense.com/licenses/mit/
 
----
-
-Have fun!

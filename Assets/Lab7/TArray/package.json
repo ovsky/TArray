@@ -1,5 +1,5 @@
 {
-    "name": "com.ovsky.tarray",
+    "name": "com.lab7.tarray",
     "displayName": "TArray",
     "version": "1.0.0",
     "unity": "2022.2",
@@ -7,7 +7,7 @@
     "documentationUrl": "https://github.com/ovsky/TArray",
     "author": 
     {
-        "name": "Przemysław Orłowski / ovsky",
+        "name": "Przemysław Orłowski / ovsky / Lab7 Studio",
         "email": "hello@orlowski.work",
         "url": "https://www.orlowski.work/"
     }

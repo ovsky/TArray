@@ -17,4 +17,4 @@ jobs:
           git checkout main -f
           git pull origin main -f
           git push origin --delete upm
-          git subtree push --prefix Assets/TArray origin upm
+          git subtree push --prefix Assets/Lab7 origin upm

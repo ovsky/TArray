@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@main
       - name: Push UPM Subtree
         run: |
-          git subtree push --prefix Assets/TArray origin upm
+          git subtree push --prefix Assets/Lab7 origin upm

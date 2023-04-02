@@ -55,7 +55,7 @@ namespace Extensions
 
         #endregion Properties
 
-        #region Constructors
+        #region Constructors    
 
         public TArray(int x, int y)
         {
@@ -84,11 +84,58 @@ namespace Extensions
 
         #region Methods
 
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+
+        public T this[int x, int y]
+        {
+            get
+            {
+                if (x < 0 || x >= size.x || y < 0 || y >= size.y)
+                {
+                    Debug.LogError($"TArray[{x}, {y}] is out of bounds");
+                    return default;
+                }
+
+                return data[(size.x * y) + x];
+            }
+            set 
+            {
+                if (x < 0 || x >= size.x || y < 0 || y >= size.y)
+                {
+                    Debug.LogError($"TArray[{x}, {y}] is out of bounds");
+                    return;
+                }
+                data[(size.x * y) + x] = value;
+            }
+        }
+
+        #else
+
         public T this[int x, int y]
         {
             get => data[(size.x * y) + x];
             set => data[(size.x * y) + x] = value;
         }
+        #endif
+
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+
+        public T Get(int x, int y)
+        {
+            if (x < 0 || x >= size.x || y < 0 || y >= size.y)
+            {
+                Debug.LogError($"TArray[{x}, {y}] is out of bounds of size: {size}");
+                return default;
+            }
+
+            return data[(size.x * y) + x];
+        }
+
+        #else
+
+        public T Get(int x, int y) => data[(size.x * y) + x];
+        
+        #endif
 
         public T this[Vector2Int pos]
         {
@@ -123,13 +170,10 @@ namespace Extensions
                 for (int i = 0; i < Mathf.Min(data.Length, backup.Length); i++)
                 {
                     data[i] = backup[i];
-                }
+                }   
             }
             return this;
         }
-
-        public T Get(int x, int y)
-            => data[(size.x * y) + x];
 
         public TArray<T> Set(int x, int y, T value)
         {

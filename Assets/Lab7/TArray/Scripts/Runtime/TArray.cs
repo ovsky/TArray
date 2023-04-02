@@ -92,7 +92,7 @@ namespace Extensions
             {
                 if (x < 0 || x >= size.x || y < 0 || y >= size.y)
                 {
-                    Debug.LogError($"TArray[{x}, {y}] is out of bounds");
+                    Debug.LogError($"TArray[{x}, {y}] is out of bounds of size: {size}");
                     return default;
                 }
 
@@ -102,7 +102,7 @@ namespace Extensions
             {
                 if (x < 0 || x >= size.x || y < 0 || y >= size.y)
                 {
-                    Debug.LogError($"TArray[{x}, {y}] is out of bounds");
+                    Debug.LogError($"TArray[{x}, {y}] is out of bounds of size: {size}");
                     return;
                 }
                 data[(size.x * y) + x] = value;

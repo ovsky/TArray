@@ -1,7 +1,7 @@
 {
-    "name": "com.lab7.tarray",
+    "name": "com.ovsky.tarray",
     "displayName": "TArray",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "unity": "2022.2",
     "description": "The most powerful and easy to use Serialized Multidimensional TArray for Unity.",
     "documentationUrl": "https://github.com/ovsky/TArray",

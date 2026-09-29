@@ -1,0 +1,17 @@
+{
+    "name": "Extensions.TArray",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8840b70b5d380d344b9f9c54f5aa5774",
+        "GUID:ccf0e37bcd124294588a3fc7adeb406f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
